@@ -1,13 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import { TicketAreaEnum } from "../(misc)/Enums";
+import { TicketAreaEnum, TicketStatusEnum } from "../(misc)/Enums";
 
 const TicketForm = () => {
   const [formData, setFormData] = useState({
     title: "",
-    area: "Software",
-    severity: 25,
+    area: TicketAreaEnum.Bug,
+    priority: 1,
     description: "",
+    status: TicketStatusEnum.Todo,
+    assignee: "",
   });
 
   const handleChange = (e) => {
@@ -47,22 +49,22 @@ const TicketForm = () => {
           onChange={handleChange}
         >
           {Object.keys(TicketAreaEnum).map((key) => (
-            <option key={key} value={TicketAreaEnum[key]}>
+            <option key={key} value={key}>
               {TicketAreaEnum[key]}
             </option>
           ))}
         </select>
         <label className="label">
-          <span className="label-text">Severity</span>
+          <span className="label-text">Priority</span>
         </label>
         <input
           type="range"
-          min={0}
-          max="100"
-          value={formData.severity}
+          min={1}
+          max="5"
+          value={formData.priority}
           className="range"
-          name="severity"
-          step="25"
+          name="priority"
+          step="1"
           onChange={handleChange}
         />
         <div className="flex w-full justify-between px-2 text-xs mb-3">
@@ -81,6 +83,37 @@ const TicketForm = () => {
           value={formData.description}
           onChange={handleChange}
         ></textarea>
+        <label className="label">
+          <span className="label-text">Status</span>
+        </label>
+        <select
+          className="select select-bordered w-full mb-3"
+          name="status"
+          value={formData.status}
+          onChange={handleChange}
+        >
+          {Object.keys(TicketStatusEnum).map((key) => (
+            <option key={key} value={key}>
+              {TicketStatusEnum[key]}
+            </option>
+          ))}
+        </select>
+        <label className="label">
+          <span className="label-text">Assignee</span>
+        </label>
+        <select
+          className="select select-bordered w-full mb-3"
+          name="assignee"
+          value={formData.assignee}
+          onChange={handleChange}
+        >
+          <option value="" disabled>
+            Select an assignee
+          </option>
+          <option value="taylorbennett">Taylor Bennett</option>
+          <option value="janedoe">Jane Doe</option>
+          <option value="johnsmith">John Smith</option>
+        </select>
         <button type="submit" className="btn btn-primary w-full mt-4">
           Create Ticket
         </button>
