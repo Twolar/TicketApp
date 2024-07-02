@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { TicketAreaEnum, TicketStatusEnum } from "../(misc)/Enums";
 
-const TicketForm = () => {
+const ExampleForm = () => {
   const [formData, setFormData] = useState({
     title: "",
     area: TicketAreaEnum.Bug,
@@ -114,12 +114,12 @@ const TicketForm = () => {
           <option value="janedoe">Jane Doe</option>
           <option value="johnsmith">John Smith</option>
         </select>
-        <button type="submit" className="btn btn-primary w-full mt-4">
-          Create Ticket
+        <button type="submit" className="btn btn-accent w-full mt-4">
+          Create Jam
         </button>
       </form>
     </div>
   );
 };
 
-export default TicketForm;
+export default ExampleForm;

@@ -10,6 +10,14 @@ module.exports = {
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
   daisyui: {
-    themes: ["dark"], // Enable the default dark theme
+    themes: [
+      {
+        myTheme: {
+          ...require("daisyui/src/theming/themes")["dark"],
+          primary: "#ff3950",
+          accent: "#15803d",
+        },
+      },
+    ],
   },
 };
