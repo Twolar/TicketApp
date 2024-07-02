@@ -19,8 +19,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav>
-      <div className="navbar bg-neutral text-neutral-content">
+    <nav className="bg-neutral text-neutral-content">
+      <div className="navbar max-w-screen-xl ml-auto mr-auto p-2">
         <div className="navbar-start">
           <Link href={PageRoutes.Home} className="flex items-center">
             <Image
