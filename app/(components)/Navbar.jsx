@@ -2,7 +2,7 @@ import {
   ArrowRightEndOnRectangleIcon,
   MagnifyingGlassIcon,
   Bars3Icon,
-} from "@heroicons/react/24/solid"; // Correcting the import
+} from "@heroicons/react/24/solid";
 import Link from "next/link";
 import PageRoutes from "../(misc)/PageRoutes";
 import Image from "next/image";
