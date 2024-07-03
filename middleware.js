@@ -18,4 +18,6 @@ export default withAuth(
   }
 );
 
+// TODO TLB: Get authorization to work...
+
 export const config = { matcher: ["/CreateUser"] };
