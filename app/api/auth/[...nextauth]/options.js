@@ -29,15 +29,18 @@ export const options = {
 
             if (match) {
               console.log("Passwords match");
-              delete foundUser.password;
-
-              return foundUser;
+              return {
+                id: foundUser._id,
+                email: foundUser.email,
+                name: foundUser.name,
+              };
             }
           }
-
+          // If user not found or password does not match, return null
           return null;
         } catch (error) {
           console.log(error);
+          return null;
         }
       },
     }),
@@ -49,11 +52,15 @@ export const options = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.email = user.email;
+        token.name = user.name;
       }
       return token;
     },
     async session({ session, token }) {
       session.user.id = token.id;
+      session.user.email = token.email;
+      session.user.name = token.name;
       return session;
     },
   },
