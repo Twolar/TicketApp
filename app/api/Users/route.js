@@ -4,8 +4,7 @@ import bcrypt from "bcrypt";
 
 export async function POST(req) {
   try {
-    const body = await req.json();
-    const userData = body.formData;
+    const userData = await req.json();
 
     if (!userData.email || !userData.password) {
       return NextResponse.json(
@@ -39,6 +38,6 @@ export async function POST(req) {
     );
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ message: "Error", err }, { status: 500 });
+    return NextResponse.json({ message: "Error", error }, { status: 500 });
   }
 }

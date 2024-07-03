@@ -12,7 +12,6 @@ const CreateUserForm = () => {
     confirmPassword: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -34,7 +33,7 @@ const CreateUserForm = () => {
 
     const res = await fetch("/api/Users", {
       method: "POST",
-      body: JSON.stringify({ formData }),
+      body: JSON.stringify(formData),
       "content-type": "application/json",
     });
 
@@ -49,7 +48,6 @@ const CreateUserForm = () => {
         password: "",
         confirmPassword: "",
       });
-      setSuccessMessage("User created successfully");
       router.refresh();
       router.push("/");
     }
@@ -58,7 +56,6 @@ const CreateUserForm = () => {
   return (
     <div className="flex flex-col items-center w-full max-w-md">
       <div className="form-control w-full">
-        <p className="text-success">{successMessage}</p>
         <p className="text-error">{errorMessage}</p>
         <form onSubmit={handleSubmit} method="post">
           <label className="label">
