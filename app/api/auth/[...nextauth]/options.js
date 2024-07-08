@@ -1,6 +1,6 @@
-import User from "@/app/(models)/User";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
+import prisma from "@/lib/prisma";
 
 export const options = {
   providers: [
@@ -16,9 +16,9 @@ export const options = {
       },
       async authorize(credentials) {
         try {
-          const foundUser = await User.findOne({ email: credentials.email })
-            .lean()
-            .exec();
+          const foundUser = await prisma.user.findUnique({
+            where: { email: credentials.email },
+          });
 
           if (foundUser) {
             console.log("User exists");
@@ -30,7 +30,7 @@ export const options = {
             if (match) {
               console.log("Passwords match");
               return {
-                id: foundUser._id,
+                id: foundUser.id,
                 email: foundUser.email,
                 name: foundUser.name,
               };

@@ -1,6 +1,6 @@
-import User from "@/app/(models)/User";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
+import prisma from "@/lib/prisma";
 
 export async function POST(req) {
   try {
@@ -13,9 +13,9 @@ export async function POST(req) {
       );
     }
 
-    const duplicateUser = await User.findOne({ email: userData.email })
-      .lean()
-      .exec();
+    const duplicateUser = await prisma.user.findUnique({
+      where: { email: userData.email },
+    });
 
     if (duplicateUser) {
       return NextResponse.json(
@@ -27,13 +27,18 @@ export async function POST(req) {
     const hashPassword = await bcrypt.hash(userData.password, 14);
     userData.password = hashPassword;
 
-    await User.create(userData);
+    const newUser = await prisma.user.create({
+      data: {
+        email: userData.email,
+        password: userData.password,
+        name: userData.name,
+      },
+    });
 
-    delete userData.password;
-    delete userData.confirmPassword;
+    delete newUser.password;
 
     return NextResponse.json(
-      { message: "User created", user: userData },
+      { message: "User created", user: newUser },
       { status: 201 }
     );
   } catch (error) {
