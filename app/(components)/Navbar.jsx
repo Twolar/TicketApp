@@ -4,10 +4,10 @@ import {
   Bars3Icon,
 } from "@heroicons/react/24/solid";
 import Link from "next/link";
-import PageRoutes from "../(misc)/PageRoutes";
+import PageRoutes from "@/app/(misc)/PageRoutes";
 import Image from "next/image";
 import { getServerSession } from "next-auth";
-import { options } from "../api/auth/[...nextauth]/options";
+import { options } from "@/app/api/auth/[...nextauth]/options";
 
 const Navbar = async () => {
   const session = await getServerSession(options);
