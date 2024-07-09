@@ -32,6 +32,7 @@ export async function POST(req) {
         email: userData.email,
         password: userData.password,
         name: userData.name,
+        username: userData.username,
       },
     });
 
