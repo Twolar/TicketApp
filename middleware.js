@@ -4,7 +4,7 @@ import { getToken } from "next-auth/jwt";
 import PageRoutes from "./app/(misc)/PageRoutes";
 
 export const config = {
-  matcher: ["/api/:function*", PageRoutes.Dashboard],
+  matcher: ["/api/:function*"],
 };
 
 const secret = process.env.NEXTAUTH_SECRET;

@@ -3,7 +3,6 @@ const PageRoutes = {
   SignIn: "/api/auth/signin",
   Home: "/",
   Users: "/Users",
-  Dashboard: "/Dashboard",
 };
 
 export default PageRoutes;
