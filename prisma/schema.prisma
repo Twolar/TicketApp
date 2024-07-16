@@ -15,7 +15,101 @@ model User {
   username      String       @unique
   email         String       @unique
   password      String
-  createdAt     DateTime     @default(now()) @map("created_at")
-  updatedAt     DateTime     @updatedAt @map("updated_at")
-  @@map("users")
+  avatar        String?
+  createdAt     DateTime     @default(now()) @map("CreatedAt")
+  updatedAt     DateTime     @updatedAt @map("UpdatedAt")
+  blogs         Blog[]
+  posts         Post[]
+  favorites     Favorite[]
+  likes         Like[]
+  postComments  PostComment[]
+  @@map("Users")
+}
+
+model Blog {
+  id            String       @id @default(uuid())
+  userId        String
+  title         String
+  description   String
+  status        String       @default("draft")
+  createdAt     DateTime     @default(now()) @map("CreatedAt")
+  updatedAt     DateTime     @updatedAt @map("UpdatedAt")
+  user          User         @relation(fields: [userId], references: [id])
+  posts         Post[]
+  blogTags      BlogTag[]
+  favorites     Favorite[]
+  @@map("Blogs")
+}
+
+model Post {
+  id            String       @id @default(uuid())
+  blogId        String
+  userId        String
+  title         String
+  content       String
+  status        String       @default("draft")
+  createdAt     DateTime     @default(now()) @map("CreatedAt")
+  updatedAt     DateTime     @updatedAt @map("UpdatedAt")
+  blog          Blog         @relation(fields: [blogId], references: [id])
+  user          User         @relation(fields: [userId], references: [id])
+  likes         Like[]
+  postComments  PostComment[]
+  @@map("Posts")
+}
+
+model Favorite {
+  id            String       @id @default(uuid())
+  userId        String
+  blogId        String
+  createdAt     DateTime     @default(now()) @map("CreatedAt")
+  updatedAt     DateTime     @updatedAt @map("UpdatedAt")
+  user          User         @relation(fields: [userId], references: [id])
+  blog          Blog         @relation(fields: [blogId], references: [id])
+  @@unique([userId, blogId])
+  @@map("Favorites")
+}
+
+model Like {
+  id            String       @id @default(uuid())
+  userId        String
+  postId        String
+  createdAt     DateTime     @default(now()) @map("CreatedAt")
+  updatedAt     DateTime     @updatedAt @map("UpdatedAt")
+  user          User         @relation(fields: [userId], references: [id])
+  post          Post         @relation(fields: [postId], references: [id])
+  @@unique([userId, postId])
+  @@map("Likes")
+}
+
+model Tag {
+  id            String       @id @default(uuid())
+  title         String
+  createdAt     DateTime     @default(now()) @map("CreatedAt")
+  updatedAt     DateTime     @updatedAt @map("UpdatedAt")
+  blogTags      BlogTag[]
+  @@map("Tags")
+}
+
+model BlogTag {
+  id            String       @id @default(uuid())
+  blogId        String
+  tagId         String
+  createdAt     DateTime     @default(now()) @map("CreatedAt")
+  updatedAt     DateTime     @updatedAt @map("UpdatedAt")
+  blog          Blog         @relation(fields: [blogId], references: [id])
+  tag           Tag          @relation(fields: [tagId], references: [id])
+  @@unique([blogId, tagId])
+  @@map("BlogTags")
+}
+
+model PostComment {
+  id            String       @id @default(uuid())
+  content       String
+  userId        String
+  postId        String
+  createdAt     DateTime     @default(now()) @map("CreatedAt")
+  updatedAt     DateTime     @updatedAt @map("UpdatedAt")
+  user          User         @relation(fields: [userId], references: [id])
+  post          Post         @relation(fields: [postId], references: [id])
+  @@map("PostComments")
 }
