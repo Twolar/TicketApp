@@ -49,7 +49,6 @@ const CreateUserForm = () => {
         confirmPassword: "",
       });
       router.refresh();
-      router.push("/");
     }
   };
 
@@ -115,7 +114,7 @@ const CreateUserForm = () => {
           />
           <input
             type="submit"
-            value="Create User"
+            value="Create"
             className="btn btn-primary w-full mt-4"
           />
         </form>

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 
 export const config = {
-  matcher: ["/api/:function*", "/Hello"],
+  matcher: ["/api/:function*", "/Users"],
 };
 
 const secret = process.env.NEXTAUTH_SECRET;
