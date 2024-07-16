@@ -3,7 +3,7 @@ import React from "react";
 const Dashboard = () => {
   return (
     <>
-      <div role="tablist" className="tabs tabs-lifted border-gray-700">
+      <div role="tablist" className="tabs tabs-bordered">
         <input
           type="radio"
           name="my_tabs_2"
@@ -13,7 +13,7 @@ const Dashboard = () => {
         />
         <div
           role="tabpanel"
-          className="tab-content bg-base-100 border-gray-700 rounded-box p-6"
+          className="tab-content bg-base-100 border-gray-700 rounded-box rounded-tl-none p-6"
         >
           Tab content 1
         </div>
@@ -28,7 +28,7 @@ const Dashboard = () => {
         />
         <div
           role="tabpanel"
-          className="tab-content bg-base-100 border-gray-700 rounded-box p-6"
+          className="tab-content bg-base-100 border-gray-700 rounded-box rounded-tl-none p-6"
         >
           Tab content 2
         </div>
@@ -42,7 +42,7 @@ const Dashboard = () => {
         />
         <div
           role="tabpanel"
-          className="tab-content bg-base-100 border-gray-700 rounded-box p-6"
+          className="tab-content bg-base-100 border-gray-700 rounded-box rounded-tl-none p-6"
         >
           Tab content 3
         </div>
