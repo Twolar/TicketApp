@@ -1,4 +1,3 @@
-import CreateUserForm from "./(components)/CreateUserForm";
 import prisma from "@/lib/prisma";
 
 const fetchUsers = async () => {

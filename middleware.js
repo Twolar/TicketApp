@@ -1,9 +1,10 @@
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
+import PageRoutes from "./app/(misc)/PageRoutes";
 
 export const config = {
-  matcher: ["/api/:function*", "/Users"],
+  matcher: ["/api/:function*", PageRoutes.Home, PageRoutes.Dashboard],
 };
 
 const secret = process.env.NEXTAUTH_SECRET;
