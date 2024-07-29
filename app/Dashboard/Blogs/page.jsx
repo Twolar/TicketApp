@@ -1,8 +1,18 @@
 import React from "react";
 import prisma from "@/lib/prisma";
+import Link from "next/link";
+import { PageRoutesPublic } from "@/app/(misc)/PageRoutes";
 
 const fetchBlogs = async () => {
-  const blogs = await prisma.user.findMany(); // TODO TLB: Change me to blogs
+  const blogs = await prisma.blog.findMany({
+    include: {
+      blogTags: {
+        include: {
+          tag: true, // Include the actual tag information
+        },
+      },
+    },
+  });
   return blogs;
 };
 
@@ -18,7 +28,14 @@ const Blogs = async () => {
             <h2 className="text-5xl font-bold text-primary">Blogs</h2>
             <p className="py-6 text-lg">A list of current Blogs</p>
           </div>
-          <div></div>
+          <div>
+            <Link
+              href={PageRoutesPublic.BlogCreate}
+              className="btn btn-primary"
+            >
+              Create blog
+            </Link>
+          </div>
         </div>
 
         {/* Row for the table */}
@@ -28,18 +45,24 @@ const Blogs = async () => {
             <thead>
               <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Username</th>
-                <th>Email</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Tags</th>
+                <th>UserId</th>
               </tr>
             </thead>
             <tbody>
-              {blogs.map((user) => (
-                <tr key={user.id}>
-                  <th>{user.id}</th>
-                  <td>{user.name}</td>
-                  <td>{user.username}</td>
-                  <td>{user.email}</td>
+              {blogs.map((blog) => (
+                <tr key={blog.id}>
+                  <th>{blog.id}</th>
+                  <td>{blog.title}</td>
+                  <td>{blog.description}</td>
+                  <td>
+                    {blog.blogTags
+                      .map((blogTag) => blogTag.tag.title)
+                      .join(", ")}
+                  </td>
+                  <td>{blog.userId}</td>
                 </tr>
               ))}
             </tbody>

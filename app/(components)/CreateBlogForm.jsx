@@ -33,13 +33,14 @@ const CreateBlogForm = () => {
     title: "",
     description: "",
     status: "",
-    tags: [], // Initialize tags in formData
+    tags: [],
   });
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;
+    console.log(`Changing ${name} to ${value}`); // Debug log
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -51,6 +52,27 @@ const CreateBlogForm = () => {
     setErrorMessage("");
 
     console.log(formData); // formData now includes tags
+
+    const res = await fetch("/api/Blogs", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      "content-type": "application/json",
+    });
+
+    if (!res.ok) {
+      const response = await res.json();
+      setErrorMessage(response.message);
+    } else {
+      setFormData({
+        title: "",
+        description: "",
+        status: "",
+        tags: [],
+      });
+      router.refresh();
+
+      // TODO TLB: Redirect to appropriate page
+    }
   };
 
   return (
