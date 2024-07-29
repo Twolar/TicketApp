@@ -4,7 +4,10 @@ export const PageRoutesPublic = {
   Home: "/",
 };
 
-export const PageRoutesManage = {
-  Manage: "/Manage",
-  Users: "/Manage/Users",
+export const PageRoutesDashboard = {
+  Dashboard: "/Dashboard",
+};
+
+export const PageRoutesAdmin = {
+  Users: "/Dashboard/Users",
 };
