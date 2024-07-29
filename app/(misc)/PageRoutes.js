@@ -10,4 +10,5 @@ export const PageRoutesDashboard = {
 
 export const PageRoutesAdmin = {
   Users: "/Dashboard/Users",
+  Blogs: "/Dashboard/Blogs",
 };

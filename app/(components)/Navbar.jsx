@@ -96,6 +96,9 @@ const Navbar = async () => {
                   <span>Admin</span>
                 </li>
                 <li>
+                  <Link href={PageRoutesAdmin.Blogs}>Blogs</Link>
+                </li>
+                <li>
                   <Link href={PageRoutesAdmin.Users}>Users</Link>
                 </li>
               </ul>
