@@ -1,8 +1,10 @@
-const PageRoutes = {
+export const PageRoutesPublic = {
   SignOut: "/api/auth/signout?callbackUrl=/",
   SignIn: "/api/auth/signin",
   Home: "/",
-  Users: "/Users",
 };
 
-export default PageRoutes;
+export const PageRoutesManage = {
+  Manage: "/Manage",
+  Users: "/Manage/Users",
+};
