@@ -47,13 +47,13 @@ const Navbar = async () => {
               className="menu menu-sm dropdown-content bg-neutral text-neutral-content rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a>Homepage</a>
+                <Link href={PageRoutesPublic.Home}>Home</Link>
               </li>
               <li>
-                <a>Portfolio</a>
+                <Link href={PageRoutesPublic.Home + "#About"}>About</Link>
               </li>
               <li>
-                <a>About</a>
+                <Link href={PageRoutesPublic.Blogs}>Explore blogs</Link>
               </li>
             </ul>
           </div>

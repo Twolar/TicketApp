@@ -32,7 +32,7 @@ const CreateBlogForm = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    status: "",
+    status: BlogStatusEnum.Draft,
     tags: [],
   });
   const [errorMessage, setErrorMessage] = useState("");
