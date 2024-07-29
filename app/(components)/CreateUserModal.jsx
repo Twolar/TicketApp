@@ -13,7 +13,7 @@ const CreateUserModal = () => {
   return (
     <>
       <button className="btn btn-primary" onClick={toggleModal}>
-        New User
+        Create
       </button>
 
       {isModalOpen && (
@@ -27,9 +27,7 @@ const CreateUserModal = () => {
                 ✕
               </button>
             </form>
-            <h3 className="font-bold text-2xl mb-4 text-primary">
-              Create User
-            </h3>
+            <h3 className="font-bold text-2xl mb-4 text-primary">Create</h3>
             <CreateUserForm />
           </div>
         </dialog>

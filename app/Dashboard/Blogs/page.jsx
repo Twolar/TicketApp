@@ -30,10 +30,10 @@ const Blogs = async () => {
           </div>
           <div>
             <Link
-              href={PageRoutesPublic.BlogCreate}
+              href={PageRoutesPublic.BlogsCreate}
               className="btn btn-primary"
             >
-              Create blog
+              Create
             </Link>
           </div>
         </div>
