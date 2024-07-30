@@ -9,6 +9,7 @@ export const PageRoutesDashboard = {
   Dashboard: "/Dashboard",
   Blogs: "/Dashboard/Blogs",
   BlogsCreate: "/Dashboard/Blogs/Create",
+  BlogsEdit: "/Dashboard/Blogs/Edit",
 };
 
 export const PageRoutesAdmin = {
