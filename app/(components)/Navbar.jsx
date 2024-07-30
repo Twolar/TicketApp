@@ -90,13 +90,13 @@ const Navbar = async () => {
                 <li>
                   <Link href={PageRoutesDashboard.Dashboard}>Overview</Link>
                 </li>
+                <li>
+                  <Link href={PageRoutesDashboard.Blogs}>Blogs</Link>
+                </li>
 
                 {/* TODO TLB: Only show this based on role */}
                 <li className="menu-title mt-2">
                   <span>Admin</span>
-                </li>
-                <li>
-                  <Link href={PageRoutesAdmin.Blogs}>Blogs</Link>
                 </li>
                 <li>
                   <Link href={PageRoutesAdmin.Users}>Users</Link>

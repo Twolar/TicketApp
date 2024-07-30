@@ -7,10 +7,10 @@ export const PageRoutesPublic = {
 
 export const PageRoutesDashboard = {
   Dashboard: "/Dashboard",
+  Blogs: "/Dashboard/Blogs",
   BlogsCreate: "/Dashboard/Blogs/Create",
 };
 
 export const PageRoutesAdmin = {
   Users: "/Dashboard/Users",
-  Blogs: "/Dashboard/Blogs",
 };

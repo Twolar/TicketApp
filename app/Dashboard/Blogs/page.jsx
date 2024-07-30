@@ -49,6 +49,7 @@ const Blogs = async () => {
                 <th>Description</th>
                 <th>Tags</th>
                 <th>UserId</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -63,6 +64,15 @@ const Blogs = async () => {
                       .join(", ")}
                   </td>
                   <td>{blog.userId}</td>
+                  <td>
+                    {" "}
+                    <Link
+                      href={`${PageRoutesDashboard.Blogs}/${blog.id}`}
+                      className="btn btn-primary btn-sm"
+                    >
+                      Manage
+                    </Link>
+                  </td>
                 </tr>
               ))}
             </tbody>
