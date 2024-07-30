@@ -1,7 +1,7 @@
 import React from "react";
 import prisma from "@/lib/prisma";
 import Link from "next/link";
-import { PageRoutesPublic } from "@/app/(misc)/PageRoutes";
+import { PageRoutesDashboard, PageRoutesPublic } from "@/app/(misc)/PageRoutes";
 
 const fetchBlogs = async () => {
   const blogs = await prisma.blog.findMany({
@@ -30,7 +30,7 @@ const Blogs = async () => {
           </div>
           <div>
             <Link
-              href={PageRoutesPublic.BlogsCreate}
+              href={PageRoutesDashboard.BlogsCreate}
               className="btn btn-primary"
             >
               Create

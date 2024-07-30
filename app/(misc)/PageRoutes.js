@@ -3,11 +3,11 @@ export const PageRoutesPublic = {
   SignIn: "/api/auth/signin",
   Home: "/",
   Blogs: "/Blogs",
-  BlogsCreate: "/Blogs/Create",
 };
 
 export const PageRoutesDashboard = {
   Dashboard: "/Dashboard",
+  BlogsCreate: "/Dashboard/Blogs/Create",
 };
 
 export const PageRoutesAdmin = {
