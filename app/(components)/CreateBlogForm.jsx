@@ -1,31 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { BlogStatusEnum } from "@/app/(misc)/Enums";
 import ChipsInput from "./ChipsFormInput";
-
-const suggestions = [
-  "Rock",
-  "Pop",
-  "Jazz",
-  "Blues",
-  "Classical",
-  "Hip-Hop",
-  "Country",
-  "Reggae",
-  "Electronic",
-  "Metal",
-  "R&B",
-  "Folk",
-  "Indie",
-  "Punk",
-  "Soul",
-  "Gospel",
-  "Disco",
-  "Funk",
-  "Latin",
-  "Ska",
-];
 
 const CreateBlogForm = () => {
   const router = useRouter();
@@ -36,6 +13,25 @@ const CreateBlogForm = () => {
     tags: [],
   });
   const [errorMessage, setErrorMessage] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+
+  useEffect(() => {
+    const fetchTags = async () => {
+      try {
+        const res = await fetch("/api/Tags");
+        if (!res.ok) {
+          throw new Error("Failed to fetch tags");
+        }
+        const data = await res.json();
+
+        setSuggestions(data.tags.map((tag) => tag.title));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchTags();
+  }, []);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -50,13 +46,12 @@ const CreateBlogForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage("");
-
-    console.log(formData); // formData now includes tags
-
     const res = await fetch("/api/Blogs", {
       method: "POST",
       body: JSON.stringify(formData),
-      "content-type": "application/json",
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
 
     if (!res.ok) {
@@ -66,7 +61,7 @@ const CreateBlogForm = () => {
       setFormData({
         title: "",
         description: "",
-        status: "",
+        status: BlogStatusEnum.Draft,
         tags: [],
       });
       router.refresh();
