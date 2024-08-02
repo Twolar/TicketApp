@@ -50,7 +50,59 @@ const BlogManagement = async ({ params }) => {
             </Link>
           </div>
         </div>
-        <h2 className="text-4xl font-bold text-primary">Posts</h2>
+        <div className="divider divider"></div>
+        <div className="flex justify-between items-center">
+          <div>
+            <h2 className="text-4xl font-bold text-primary">Posts</h2>
+          </div>
+          <div>
+            <Link
+              href={`${PageRoutesDashboard.BlogsEdit}/${blog.id}`}
+              className="btn btn-primary btn-sm"
+            >
+              New Post
+            </Link>
+          </div>
+        </div>
+        {/* Row for the table */}
+        <div className="overflow-x-auto">
+          <table className="table table-zebra w-full border-2 border-gray-700">
+            {/* Table head */}
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Tags</th>
+                <th>UserId</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* {blogs.map((blog) => (
+                <tr key={blog.id}>
+                  <th>{blog.id}</th>
+                  <td>{blog.title}</td>
+                  <td>{blog.description}</td>
+                  <td>
+                    {blog.blogTags
+                      .map((blogTag) => blogTag.tag.title)
+                      .join(", ")}
+                  </td>
+                  <td>{blog.userId}</td>
+                  <td>
+                    <Link
+                      href={`${PageRoutesDashboard.Blogs}/${blog.id}`}
+                      className="btn btn-primary btn-sm"
+                    >
+                      Manage
+                    </Link>
+                  </td>
+                </tr>
+              ))} */}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );
