@@ -1,18 +1,43 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { PageRoutesDashboard } from "../(misc)/PageRoutes";
 
-const CreateUserForm = () => {
+const EditUserForm = ({ userId }) => {
   const router = useRouter();
+
   const [formData, setFormData] = useState({
     name: "",
     username: "",
     email: "",
-    password: "",
-    confirmPassword: "",
   });
+
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    // Fetch existing user data to populate the form
+    const fetchUser = async () => {
+      try {
+        const res = await fetch(`/api/Users/${userId}`);
+        if (!res.ok) {
+          throw new Error("Failed to fetch user");
+        }
+        const json = await res.json();
+        setFormData({
+          name: json.user.name,
+          username: json.user.username,
+          email: json.user.email,
+        });
+      } catch (error) {
+        console.error("Error loading user data:", error);
+        setErrorMessage("Could not load user data.");
+      }
+    };
+
+    if (userId) {
+      fetchUser();
+    }
+  }, [userId]);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -27,31 +52,26 @@ const CreateUserForm = () => {
     e.preventDefault();
     setErrorMessage("");
 
-    if (formData.password !== formData.confirmPassword) {
-      setErrorMessage("Passwords must match!");
-      return;
-    }
-
-    const res = await fetch("/api/Users", {
-      method: "POST",
-      body: JSON.stringify(formData),
-      "content-type": "application/json",
-    });
-
-    const response = await res.json();
-
-    if (!res.ok) {
-      setErrorMessage(response.message);
-    } else {
-      setFormData({
-        name: "",
-        username: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
+    try {
+      const res = await fetch(`/api/Users/${userId}`, {
+        method: "PUT",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
-      router.push(`${PageRoutesDashboard.Users}`);
-      router.refresh(); // Force page refresh to get the latest data
+
+      const response = await res.json();
+
+      if (!res.ok) {
+        setErrorMessage(response.message);
+      } else {
+        router.push(`${PageRoutesDashboard.Users}`);
+        router.refresh(); // Refresh the page to get the latest data
+      }
+    } catch (error) {
+      console.error("Error updating user:", error);
+      setErrorMessage("An error occurred while updating the user.");
     }
   };
 
@@ -66,7 +86,7 @@ const CreateUserForm = () => {
           <input
             type="text"
             name="name"
-            required={true}
+            required
             value={formData.name}
             onChange={handleChange}
             className="input input-bordered input-md w-full mb-4"
@@ -77,7 +97,7 @@ const CreateUserForm = () => {
           <input
             type="text"
             name="username"
-            required={true}
+            required
             value={formData.username}
             onChange={handleChange}
             className="input input-bordered input-md w-full mb-4"
@@ -88,36 +108,14 @@ const CreateUserForm = () => {
           <input
             type="email"
             name="email"
-            required={true}
+            required
             value={formData.email}
-            onChange={handleChange}
-            className="input input-bordered input-md w-full mb-4"
-          />
-          <label className="label">
-            <span className="label-text">Password</span>
-          </label>
-          <input
-            type="password"
-            name="password"
-            required={true}
-            value={formData.password}
-            onChange={handleChange}
-            className="input input-bordered input-md w-full mb-4"
-          />
-          <label className="label">
-            <span className="label-text">Confirm Password</span>
-          </label>
-          <input
-            type="password"
-            name="confirmPassword"
-            required={true}
-            value={formData.confirmpassword}
             onChange={handleChange}
             className="input input-bordered input-md w-full mb-4"
           />
           <input
             type="submit"
-            value="Create"
+            value="Update"
             className="btn btn-primary w-full mt-4"
           />
         </form>
@@ -126,4 +124,4 @@ const CreateUserForm = () => {
   );
 };
 
-export default CreateUserForm;
+export default EditUserForm;

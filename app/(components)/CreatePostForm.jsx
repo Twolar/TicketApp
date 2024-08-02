@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { PostStatusEnum } from "@/app/(misc)/Enums";
+import { PageRoutesDashboard } from "../(misc)/PageRoutes";
 
 const CreatePostForm = ({ blogId }) => {
   const router = useRouter();
@@ -35,8 +36,9 @@ const CreatePostForm = ({ blogId }) => {
       },
     });
 
+    const response = await res.json();
+
     if (!res.ok) {
-      const response = await res.json();
       setErrorMessage(response.message);
     } else {
       setFormData({
@@ -44,9 +46,8 @@ const CreatePostForm = ({ blogId }) => {
         content: "",
         status: PostStatusEnum.Draft,
       });
-      router.refresh();
-
-      // TODO TLB: Redirect to appropriate page
+      router.push(`${PageRoutesDashboard.Blogs}/${response.post.blogId}`);
+      router.refresh(); // Force page refresh to get the latest data
     }
   };
 

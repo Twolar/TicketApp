@@ -11,4 +11,5 @@ export const PageRoutesDashboard = {
   BlogsCreate: "/Dashboard/Blogs/Create",
   BlogsEdit: "/Dashboard/Blogs/Edit",
   Users: "/Dashboard/Users",
+  UsersCreate: "/Dashboard/Users/Create",
 };

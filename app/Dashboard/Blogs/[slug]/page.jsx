@@ -107,7 +107,7 @@ const BlogManagement = async ({ params }) => {
               ) : (
                 <tr>
                   <td colSpan="6" className="text-center">
-                    No posts available.
+                    Start posting some chu chu chuuunes...
                   </td>
                 </tr>
               )}

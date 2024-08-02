@@ -1,6 +1,7 @@
 import React from "react";
 import prisma from "@/lib/prisma";
-import CreateUserModal from "@/app/(components)/CreateUserModal";
+import Link from "next/link";
+import { PageRoutesDashboard } from "@/app/(misc)/PageRoutes";
 
 const fetchUsers = async () => {
   const users = await prisma.user.findMany();
@@ -20,7 +21,12 @@ const Users = async () => {
             <p className="py-6 text-lg">A list of current users</p>
           </div>
           <div>
-            <CreateUserModal />
+            <Link
+              href={PageRoutesDashboard.UsersCreate}
+              className="btn btn-primary"
+            >
+              Create
+            </Link>
           </div>
         </div>
 
@@ -34,6 +40,7 @@ const Users = async () => {
                 <th>Name</th>
                 <th>Username</th>
                 <th>Email</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -43,6 +50,14 @@ const Users = async () => {
                   <td>{user.name}</td>
                   <td>{user.username}</td>
                   <td>{user.email}</td>
+                  <td>
+                    <Link
+                      href={`${PageRoutesDashboard.Users}/Edit/${user.id}`}
+                      className="btn btn-primary btn-sm"
+                    >
+                      Manage
+                    </Link>
+                  </td>
                 </tr>
               ))}
             </tbody>

@@ -5,6 +5,7 @@ import { PageRoutesDashboard } from "@/app/(misc)/PageRoutes";
 const BlogsPage = async () => {
   const blogs = await prisma.blog.findMany({
     include: {
+      user: true,
       blogTags: {
         include: {
           tag: true, // Include the actual tag information
@@ -41,8 +42,8 @@ const BlogsPage = async () => {
               <th>Title</th>
               <th>Description</th>
               <th>Tags</th>
-              <th>UserId</th>
-              <th></th>
+              <th>Author</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -54,7 +55,7 @@ const BlogsPage = async () => {
                 <td>
                   {blog.blogTags.map((blogTag) => blogTag.tag.title).join(", ")}
                 </td>
-                <td>{blog.userId}</td>
+                <td>{blog.user.name}</td>
                 <td>
                   <Link
                     href={`${PageRoutesDashboard.Blogs}/${blog.id}`}

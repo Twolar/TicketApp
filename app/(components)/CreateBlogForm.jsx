@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { BlogStatusEnum } from "@/app/(misc)/Enums";
 import ChipsInput from "./ChipsFormInput";
+import { PageRoutesDashboard } from "../(misc)/PageRoutes";
 
 const CreateBlogForm = () => {
   const router = useRouter();
@@ -53,8 +54,9 @@ const CreateBlogForm = () => {
       },
     });
 
+    const response = await res.json();
+
     if (!res.ok) {
-      const response = await res.json();
       setErrorMessage(response.message);
     } else {
       setFormData({
@@ -63,9 +65,8 @@ const CreateBlogForm = () => {
         status: BlogStatusEnum.Draft,
         tags: [],
       });
-      router.refresh();
-
-      // TODO TLB: Redirect to appropriate page
+      router.push(`${PageRoutesDashboard.Blogs}/${response.blog.id}`);
+      router.refresh(); // Force page refresh to get the latest data
     }
   };
 
@@ -102,6 +103,7 @@ const CreateBlogForm = () => {
             name="tags"
             suggestions={suggestions}
             onChipsChange={handleChange}
+            value={formData.tags}
           />
           <label className="label">
             <span className="label-text">Status</span>
