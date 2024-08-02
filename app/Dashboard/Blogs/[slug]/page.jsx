@@ -43,7 +43,7 @@ const BlogManagement = async ({ params }) => {
           </div>
           <div>
             <Link
-              href={PageRoutesDashboard.BlogsEdit}
+              href={`${PageRoutesDashboard.BlogsEdit}/${blog.id}`}
               className="btn btn-primary"
             >
               Edit

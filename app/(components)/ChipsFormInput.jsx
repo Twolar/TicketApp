@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 
 const CreateNewText = "+ Add New";
 
-const ChipsInput = ({ suggestions, onChipsChange, name }) => {
+const ChipsInput = ({ suggestions, onChipsChange, name, value = [] }) => {
   const [inputValue, setInputValue] = useState("");
-  const [chips, setChips] = useState([]);
+  const [chips, setChips] = useState(Array.isArray(value) ? value : []);
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
@@ -87,6 +87,12 @@ const ChipsInput = ({ suggestions, onChipsChange, name }) => {
   useEffect(() => {
     setSelectedIndex(-1);
   }, [inputValue]);
+
+  useEffect(() => {
+    if (Array.isArray(value)) {
+      setChips(value);
+    }
+  }, [value]);
 
   return (
     <div className="form-control">
