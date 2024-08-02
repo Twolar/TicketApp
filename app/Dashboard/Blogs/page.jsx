@@ -53,7 +53,11 @@ const BlogsPage = async () => {
                 <td>{blog.title}</td>
                 <td>{blog.description}</td>
                 <td>
-                  {blog.blogTags.map((blogTag) => blogTag.tag.title).join(", ")}
+                  {blog.blogTags.map((blogTag, index) => (
+                    <div key={index} className="badge badge-neutral m-1">
+                      {blogTag.tag.title}
+                    </div>
+                  ))}
                 </td>
                 <td>{blog.user.name}</td>
                 <td>
