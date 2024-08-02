@@ -32,7 +32,7 @@ const BlogManagement = async ({ params }) => {
       <div className="flex flex-col space-y-4">
         <div className="flex justify-between items-center">
           <div>
-            <PageTitle headingLevel="h2" title="Manage Blog" titleSize="4xl" />
+            <PageTitle headingLevel="h2" title="Manage blog" titleSize="4xl" />
             <ul className="mt-4">
               <li>Title: {blog.title}</li>
               <li>Description: {blog.description}</li>
@@ -68,7 +68,7 @@ const BlogManagement = async ({ params }) => {
               href={`${PageRoutesDashboard.Blogs}/${blog.id}/Posts/Create`}
               className="btn btn-primary btn-sm"
             >
-              new post
+              +
             </Link>
           </div>
         </div>
