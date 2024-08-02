@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import PageTitle from "./(components)/PageTitle";
 
 const fetchUsers = async () => {
   const users = await prisma.user.findMany();
@@ -10,8 +11,13 @@ const Home = async () => {
 
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-5xl font-bold text-primary">Welcome to beetjam.</h1>
-      <p className="py-6 text-lg">🚂 A place to find new chu chu chuuunes 💦</p>
+      <PageTitle
+        headingLevel="h2"
+        title="Welcome to beetjam."
+        subtitle="🚂 A place to find new chu chu chuuunes 💦"
+        titleSize="4xl"
+        subtitleSize="lg"
+      />
     </div>
   );
 };

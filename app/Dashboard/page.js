@@ -1,10 +1,16 @@
 import React from "react";
+import PageTitle from "../(components)/PageTitle";
 
 const Manage = () => {
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-5xl font-bold text-primary">Management</h1>
-      <p className="py-6 text-lg">Welcome to the content management area.</p>
+      <PageTitle
+        headingLevel="h2"
+        title="Management"
+        subtitle="Welcome to the content management area."
+        titleSize="4xl"
+        subtitleSize="lg"
+      />
     </div>
   );
 };

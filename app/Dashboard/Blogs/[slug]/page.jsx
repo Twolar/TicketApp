@@ -1,3 +1,4 @@
+import PageTitle from "@/app/(components)/PageTitle";
 import { PageRoutesDashboard } from "@/app/(misc)/PageRoutes";
 import Link from "next/link";
 import React from "react";
@@ -31,7 +32,7 @@ const BlogManagement = async ({ params }) => {
       <div className="flex flex-col space-y-4">
         <div className="flex justify-between items-center">
           <div>
-            <h2 className="text-4xl font-bold text-primary">Manage Blog</h2>
+            <PageTitle headingLevel="h2" title="Manage Blog" titleSize="4xl" />
             <ul className="mt-4">
               <li>Title: {blog.title}</li>
               <li>Description: {blog.description}</li>
@@ -60,7 +61,7 @@ const BlogManagement = async ({ params }) => {
         <div className="divider"></div>
         <div className="flex justify-between items-center">
           <div>
-            <h2 className="text-4xl font-bold text-primary">Posts</h2>
+            <PageTitle headingLevel="h2" title="Posts" titleSize="4xl" />
           </div>
           <div>
             <Link

@@ -1,10 +1,12 @@
 import EditUserForm from "@/app/(components)/EditUserForm";
+import PageTitle from "@/app/(components)/PageTitle";
 import React from "react";
 
 const UserEdit = async ({ params }) => {
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-5xl font-bold text-primary">Edit User</h1>
+      <PageTitle headingLevel="h2" title="Edit User" titleSize="4xl" />
+
       <EditUserForm userId={params.slug} />
     </div>
   );

@@ -1,13 +1,17 @@
 import React from "react";
+import PageTitle from "../(components)/PageTitle";
 
 const Denied = () => {
   return (
     <>
       <div className="flex flex-col items-center">
-        <h1 className="text-5xl font-bold text-primary">Denied</h1>
-        <p className="py-6 text-lg">
-          Looks like you do not have access to this page...
-        </p>
+        <PageTitle
+          headingLevel="h2"
+          title="Denied"
+          subtitle="Looks like you do not have access to this page..."
+          titleSize="4xl"
+          subtitleSize="lg"
+        />
       </div>
     </>
   );

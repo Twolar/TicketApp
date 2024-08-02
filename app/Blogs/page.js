@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { PageRoutesDashboard, PageRoutesPublic } from "@/app/(misc)/PageRoutes";
 import Image from "next/image";
+import PageTitle from "../(components)/PageTitle";
 
 // Fetch blogs directly in the component
 const fetchBlogs = async () => {
@@ -24,11 +25,13 @@ const Blogs = async () => {
   return (
     <div className="flex flex-col">
       <div className="flex justify-between items-center ">
-        <div>
-          <h2 className="text-5xl font-bold text-primary">Blogs</h2>
-          <p className="py-6 text-lg">Explore music blogs...</p>
-        </div>
-        <div></div>
+        <PageTitle
+          headingLevel="h2"
+          title="Blogs"
+          subtitle="Explore music blogs..."
+          titleSize="4xl"
+          subtitleSize="lg"
+        />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

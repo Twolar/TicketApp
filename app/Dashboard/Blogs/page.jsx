@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { PageRoutesDashboard } from "@/app/(misc)/PageRoutes";
+import PageTitle from "@/app/(components)/PageTitle";
 
 const BlogsPage = async () => {
   const blogs = await prisma.blog.findMany({
@@ -18,10 +19,13 @@ const BlogsPage = async () => {
     <div className="flex flex-col space-y-4">
       {/* Row for header and button */}
       <div className="flex justify-between items-center">
-        <div>
-          <h2 className="text-5xl font-bold text-primary">Blogs</h2>
-          <p className="py-6 text-lg">A list of current Blogs</p>
-        </div>
+        <PageTitle
+          headingLevel="h2"
+          title="Blogs"
+          subtitle="A list of current Blogs"
+          titleSize="4xl"
+          subtitleSize="lg"
+        />
         <div>
           <Link
             href={PageRoutesDashboard.BlogsCreate}

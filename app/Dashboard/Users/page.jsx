@@ -2,6 +2,7 @@ import React from "react";
 import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { PageRoutesDashboard } from "@/app/(misc)/PageRoutes";
+import PageTitle from "@/app/(components)/PageTitle";
 
 const fetchUsers = async () => {
   const users = await prisma.user.findMany();
@@ -16,10 +17,13 @@ const Users = async () => {
       <div className="flex flex-col space-y-4">
         {/* Row for header and button */}
         <div className="flex justify-between items-center">
-          <div>
-            <h2 className="text-5xl font-bold text-primary">Users</h2>
-            <p className="py-6 text-lg">A list of current users</p>
-          </div>
+          <PageTitle
+            headingLevel="h2"
+            title="Users"
+            subtitle="A list of current users"
+            titleSize="4xl"
+            subtitleSize="lg"
+          />
           <div>
             <Link
               href={PageRoutesDashboard.UsersCreate}
