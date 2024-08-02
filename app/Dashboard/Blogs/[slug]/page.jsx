@@ -24,7 +24,7 @@ const BlogManagement = async ({ params }) => {
       <div className="flex flex-col space-y-4">
         <div className="flex justify-between items-center">
           <div>
-            <h2 className="text-5xl font-bold text-primary">Manage Blog</h2>
+            <h2 className="text-4xl font-bold text-primary">Manage Blog</h2>
             <ul className="mt-4">
               <li>Title: {blog.title}</li>
               <li>Description: {blog.description}</li>

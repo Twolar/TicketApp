@@ -4,11 +4,7 @@ import {
   Bars3Icon,
 } from "@heroicons/react/24/solid";
 import Link from "next/link";
-import {
-  PageRoutesAdmin,
-  PageRoutesDashboard,
-  PageRoutesPublic,
-} from "@/app/(misc)/PageRoutes";
+import { PageRoutesDashboard, PageRoutesPublic } from "@/app/(misc)/PageRoutes";
 import Image from "next/image";
 import { getServerSession } from "next-auth";
 import { options } from "@/app/api/auth/[...nextauth]/options";
@@ -95,11 +91,8 @@ const Navbar = async () => {
                 </li>
 
                 {/* TODO TLB: Only show this based on role */}
-                <li className="menu-title mt-2">
-                  <span>Admin</span>
-                </li>
                 <li>
-                  <Link href={PageRoutesAdmin.Users}>Users</Link>
+                  <Link href={PageRoutesDashboard.Users}>Users</Link>
                 </li>
               </ul>
             </div>
