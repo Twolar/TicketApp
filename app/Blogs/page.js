@@ -28,14 +28,7 @@ const Blogs = async () => {
           <h2 className="text-5xl font-bold text-primary">Blogs</h2>
           <p className="py-6 text-lg">Explore music blogs...</p>
         </div>
-        <div>
-          <Link
-            href={PageRoutesDashboard.BlogsCreate}
-            className="btn btn-primary btn-sm"
-          >
-            Create
-          </Link>
-        </div>
+        <div></div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
