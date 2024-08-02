@@ -43,13 +43,13 @@ const Navbar = async () => {
               className="menu menu-sm dropdown-content bg-neutral text-neutral-content rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
-                <Link href={PageRoutesPublic.Home}>Home</Link>
+                <Link href={PageRoutesPublic.Home}>home</Link>
               </li>
               <li>
-                <Link href={PageRoutesPublic.Home + "#About"}>About</Link>
+                <Link href={PageRoutesPublic.Home + "#About"}>about</Link>
               </li>
               <li>
-                <Link href={PageRoutesPublic.Blogs}>Explore blogs</Link>
+                <Link href={PageRoutesPublic.Blogs}>explore blogs</Link>
               </li>
             </ul>
           </div>
@@ -74,25 +74,25 @@ const Navbar = async () => {
                 className="menu menu-sm dropdown-content bg-neutral text-neutral-content rounded-box z-[1] mt-3 w-52 p-2 shadow"
               >
                 <li>
-                  <Link href={PageRoutesPublic.SignOut}>Logout</Link>
+                  <Link href={PageRoutesPublic.SignOut}>logout</Link>
                 </li>
                 <li>
-                  <a className="justify-between">My Profile</a>
+                  <a className="justify-between">my profile</a>
                 </li>
 
                 <li className="menu-title mt-2">
-                  <span>Dashboard</span>
+                  <span>dashboard</span>
                 </li>
                 <li>
-                  <Link href={PageRoutesDashboard.Dashboard}>Overview</Link>
+                  <Link href={PageRoutesDashboard.Dashboard}>overview</Link>
                 </li>
                 <li>
-                  <Link href={PageRoutesDashboard.Blogs}>Blogs</Link>
+                  <Link href={PageRoutesDashboard.Blogs}>blogs</Link>
                 </li>
 
                 {/* TODO TLB: Only show this based on role */}
                 <li>
-                  <Link href={PageRoutesDashboard.Users}>Users</Link>
+                  <Link href={PageRoutesDashboard.Users}>users</Link>
                 </li>
               </ul>
             </div>

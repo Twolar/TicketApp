@@ -122,7 +122,7 @@ const EditPostForm = ({ postId }) => {
 
           <input
             type="submit"
-            value="Update"
+            value="update"
             className="btn btn-primary w-full mt-4"
           />
         </form>

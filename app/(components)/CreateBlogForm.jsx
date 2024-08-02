@@ -124,7 +124,7 @@ const CreateBlogForm = () => {
 
           <input
             type="submit"
-            value="Create"
+            value="create"
             className="btn btn-primary w-full mt-4"
           />
         </form>

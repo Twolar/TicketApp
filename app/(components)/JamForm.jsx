@@ -44,7 +44,7 @@ const JamForm = () => {
           onChange={handleChange}
         ></textarea>
         <button type="submit" className="btn btn-accent w-full mt-4">
-          Create Jam
+          create jam
         </button>
       </form>
     </div>

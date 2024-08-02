@@ -152,7 +152,7 @@ const EditBlogForm = ({ blogId }) => {
 
           <input
             type="submit"
-            value="Update Blog"
+            value="update"
             className="btn btn-primary w-full mt-4"
           />
         </form>

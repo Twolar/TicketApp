@@ -53,7 +53,7 @@ const BlogManagement = async ({ params }) => {
               href={`${PageRoutesDashboard.BlogsEdit}/${blog.id}`}
               className="btn btn-primary"
             >
-              Edit
+              edit
             </Link>
           </div>
         </div>
@@ -67,7 +67,7 @@ const BlogManagement = async ({ params }) => {
               href={`${PageRoutesDashboard.Blogs}/${blog.id}/Posts/Create`}
               className="btn btn-primary btn-sm"
             >
-              New Post
+              new post
             </Link>
           </div>
         </div>
@@ -99,7 +99,7 @@ const BlogManagement = async ({ params }) => {
                         href={`${PageRoutesDashboard.Blogs}/${blog.id}/Posts/Edit/${post.id}`}
                         className="btn btn-primary btn-sm"
                       >
-                        Manage
+                        edit
                       </Link>
                     </td>
                   </tr>
