@@ -3,3 +3,9 @@ export const BlogStatusEnum = {
   Private: "Private",
   Draft: "Draft",
 };
+
+export const PostStatusEnum = {
+  Public: "Public",
+  Private: "Private",
+  Draft: "Draft",
+};

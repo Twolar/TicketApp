@@ -2,13 +2,20 @@ import { PageRoutesDashboard } from "@/app/(misc)/PageRoutes";
 import Link from "next/link";
 import React from "react";
 
+// Fetch the blog and associated posts from the database
 async function getBlog(id) {
   const blog = await prisma.blog.findUnique({
     where: { id: id },
     include: {
+      user: true,
       blogTags: {
         include: {
           tag: true,
+        },
+      },
+      posts: {
+        include: {
+          user: true, // Include user data if needed
         },
       },
     },
@@ -38,7 +45,7 @@ const BlogManagement = async ({ params }) => {
                   ))}
                 </span>
               </li>
-              <li>UserId: {blog.userId}</li>
+              <li>Author: {blog.user.name}</li>
             </ul>
           </div>
           <div>
@@ -50,14 +57,14 @@ const BlogManagement = async ({ params }) => {
             </Link>
           </div>
         </div>
-        <div className="divider divider"></div>
+        <div className="divider"></div>
         <div className="flex justify-between items-center">
           <div>
             <h2 className="text-4xl font-bold text-primary">Posts</h2>
           </div>
           <div>
             <Link
-              href={`${PageRoutesDashboard.BlogsEdit}/${blog.id}`}
+              href={`${PageRoutesDashboard.Blogs}/${blog.id}/Posts/Create`}
               className="btn btn-primary btn-sm"
             >
               New Post
@@ -72,34 +79,38 @@ const BlogManagement = async ({ params }) => {
               <tr>
                 <th>Id</th>
                 <th>Title</th>
-                <th>Description</th>
-                <th>Tags</th>
-                <th>UserId</th>
-                <th></th>
+                <th>Content</th>
+                <th>Status</th>
+                <th>Author</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {/* {blogs.map((blog) => (
-                <tr key={blog.id}>
-                  <th>{blog.id}</th>
-                  <td>{blog.title}</td>
-                  <td>{blog.description}</td>
-                  <td>
-                    {blog.blogTags
-                      .map((blogTag) => blogTag.tag.title)
-                      .join(", ")}
-                  </td>
-                  <td>{blog.userId}</td>
-                  <td>
-                    <Link
-                      href={`${PageRoutesDashboard.Blogs}/${blog.id}`}
-                      className="btn btn-primary btn-sm"
-                    >
-                      Manage
-                    </Link>
+              {blog.posts.length > 0 ? (
+                blog.posts.map((post) => (
+                  <tr key={post.id}>
+                    <td>{post.id}</td>
+                    <td>{post.title}</td>
+                    <td>{post.content}</td>
+                    <td>{post.status}</td>
+                    <td>{post.user.name}</td>
+                    <td>
+                      <Link
+                        href={`${PageRoutesDashboard.Blogs}/${blog.id}/Posts/Edit/${post.id}`}
+                        className="btn btn-primary btn-sm"
+                      >
+                        Manage
+                      </Link>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="6" className="text-center">
+                    No posts available.
                   </td>
                 </tr>
-              ))} */}
+              )}
             </tbody>
           </table>
         </div>

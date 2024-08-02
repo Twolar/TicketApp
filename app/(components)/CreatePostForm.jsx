@@ -1,37 +1,17 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { BlogStatusEnum } from "@/app/(misc)/Enums";
-import ChipsInput from "./ChipsFormInput";
+import { PostStatusEnum } from "@/app/(misc)/Enums";
 
-const CreateBlogForm = () => {
+const CreatePostForm = ({ blogId }) => {
   const router = useRouter();
   const [formData, setFormData] = useState({
     title: "",
-    description: "",
-    status: BlogStatusEnum.Draft,
-    tags: [],
+    content: "",
+    status: PostStatusEnum.Draft,
+    blogId,
   });
   const [errorMessage, setErrorMessage] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
-
-  useEffect(() => {
-    const fetchTags = async () => {
-      try {
-        const res = await fetch("/api/Tags");
-        if (!res.ok) {
-          throw new Error("Failed to fetch tags");
-        }
-        const data = await res.json();
-
-        setSuggestions(data.tags.map((tag) => tag.title));
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchTags();
-  }, []);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -43,9 +23,11 @@ const CreateBlogForm = () => {
   };
 
   const handleSubmit = async (e) => {
+    console.log(formData);
+
     e.preventDefault();
     setErrorMessage("");
-    const res = await fetch("/api/Blogs", {
+    const res = await fetch("/api/Posts", {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {
@@ -59,9 +41,8 @@ const CreateBlogForm = () => {
     } else {
       setFormData({
         title: "",
-        description: "",
-        status: BlogStatusEnum.Draft,
-        tags: [],
+        content: "",
+        status: PostStatusEnum.Draft,
       });
       router.refresh();
 
@@ -86,22 +67,14 @@ const CreateBlogForm = () => {
             className="input input-bordered input-md w-full mb-4"
           />
           <label className="label">
-            <span className="label-text">Description</span>
+            <span className="label-text">Content</span>
           </label>
           <textarea
-            name="description"
+            name="content"
             required={true}
-            value={formData.description}
+            value={formData.content}
             onChange={handleChange}
             className="textarea textarea-bordered w-full mb-4"
-          />
-          <label className="label">
-            <span className="label-text">Tags</span>
-          </label>
-          <ChipsInput
-            name="tags"
-            suggestions={suggestions}
-            onChipsChange={handleChange}
           />
           <label className="label">
             <span className="label-text">Status</span>
@@ -113,7 +86,7 @@ const CreateBlogForm = () => {
             onChange={handleChange}
             className="select select-bordered w-full mb-4"
           >
-            {Object.values(BlogStatusEnum).map((status, index) => (
+            {Object.values(PostStatusEnum).map((status, index) => (
               <option key={index} value={status}>
                 {status}
               </option>
@@ -131,4 +104,4 @@ const CreateBlogForm = () => {
   );
 };
 
-export default CreateBlogForm;
+export default CreatePostForm;

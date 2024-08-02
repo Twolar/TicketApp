@@ -1,37 +1,46 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { BlogStatusEnum } from "@/app/(misc)/Enums";
-import ChipsInput from "./ChipsFormInput";
+import { PostStatusEnum } from "@/app/(misc)/Enums";
+import { PageRoutesDashboard } from "../(misc)/PageRoutes";
 
-const CreateBlogForm = () => {
+const EditPostForm = ({ postId }) => {
   const router = useRouter();
+
   const [formData, setFormData] = useState({
     title: "",
-    description: "",
-    status: BlogStatusEnum.Draft,
-    tags: [],
+    content: "",
+    status: PostStatusEnum.Draft,
+    blogId: "",
   });
+
   const [errorMessage, setErrorMessage] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
 
   useEffect(() => {
-    const fetchTags = async () => {
+    // Fetch existing post data to populate the form
+    const fetchPost = async () => {
       try {
-        const res = await fetch("/api/Tags");
+        const res = await fetch(`/api/Posts/${postId}`);
         if (!res.ok) {
-          throw new Error("Failed to fetch tags");
+          throw new Error("Failed to fetch post");
         }
-        const data = await res.json();
-
-        setSuggestions(data.tags.map((tag) => tag.title));
+        const json = await res.json();
+        setFormData({
+          title: json.post.title,
+          content: json.post.content,
+          status: json.post.status,
+          blogId: json.post.blogId,
+        });
       } catch (error) {
         console.error(error);
+        setErrorMessage("Could not load post data.");
       }
     };
 
-    fetchTags();
-  }, []);
+    if (postId) {
+      fetchPost();
+    }
+  }, [postId]);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -45,8 +54,8 @@ const CreateBlogForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage("");
-    const res = await fetch("/api/Blogs", {
-      method: "POST",
+    const res = await fetch(`/api/Posts/${postId}`, {
+      method: "PUT",
       body: JSON.stringify(formData),
       headers: {
         "Content-Type": "application/json",
@@ -59,13 +68,12 @@ const CreateBlogForm = () => {
     } else {
       setFormData({
         title: "",
-        description: "",
-        status: BlogStatusEnum.Draft,
-        tags: [],
+        content: "",
+        status: PostStatusEnum.Draft,
+        blogId: "",
       });
-      router.refresh();
-
-      // TODO TLB: Redirect to appropriate page
+      router.push(`${PageRoutesDashboard.Blogs}/${formData.blogId}`);
+      router.refresh(); // Refresh the page to get the latest data
     }
   };
 
@@ -80,40 +88,32 @@ const CreateBlogForm = () => {
           <input
             type="text"
             name="title"
-            required={true}
+            required
             value={formData.title}
             onChange={handleChange}
             className="input input-bordered input-md w-full mb-4"
           />
           <label className="label">
-            <span className="label-text">Description</span>
+            <span className="label-text">Content</span>
           </label>
           <textarea
-            name="description"
-            required={true}
-            value={formData.description}
+            name="content"
+            required
+            value={formData.content}
             onChange={handleChange}
             className="textarea textarea-bordered w-full mb-4"
-          />
-          <label className="label">
-            <span className="label-text">Tags</span>
-          </label>
-          <ChipsInput
-            name="tags"
-            suggestions={suggestions}
-            onChipsChange={handleChange}
           />
           <label className="label">
             <span className="label-text">Status</span>
           </label>
           <select
             name="status"
-            required={true}
+            required
             value={formData.status}
             onChange={handleChange}
             className="select select-bordered w-full mb-4"
           >
-            {Object.values(BlogStatusEnum).map((status, index) => (
+            {Object.values(PostStatusEnum).map((status, index) => (
               <option key={index} value={status}>
                 {status}
               </option>
@@ -122,7 +122,7 @@ const CreateBlogForm = () => {
 
           <input
             type="submit"
-            value="Create"
+            value="Update"
             className="btn btn-primary w-full mt-4"
           />
         </form>
@@ -131,4 +131,4 @@ const CreateBlogForm = () => {
   );
 };
 
-export default CreateBlogForm;
+export default EditPostForm;
