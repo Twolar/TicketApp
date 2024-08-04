@@ -5,7 +5,7 @@ import React from "react";
 const BlogCreate = () => {
   return (
     <div className="flex flex-col items-center">
-      <PageTitle headingLevel="h2" title="Create a blog" titleSize="4xl" />
+      <PageTitle headingLevel="h2" title="Create a blog" />
       <CreateBlogForm />
     </div>
   );

@@ -21,8 +21,6 @@ const Users = async () => {
             headingLevel="h2"
             title="Users"
             subtitle="A list of current users"
-            titleSize="4xl"
-            subtitleSize="lg"
           />
           <div>
             <Link

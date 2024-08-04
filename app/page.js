@@ -15,8 +15,6 @@ const Home = async () => {
         headingLevel="h2"
         title="Welcome to beetjam."
         subtitle="🚂 A place to find new chu chu chuuunes 💦"
-        titleSize="4xl"
-        subtitleSize="lg"
       />
     </div>
   );

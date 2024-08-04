@@ -5,7 +5,7 @@ import React from "react";
 const BlogEdit = async ({ params }) => {
   return (
     <div className="flex flex-col items-center">
-      <PageTitle headingLevel="h2" title="Edit Blog" titleSize="4xl" />
+      <PageTitle headingLevel="h2" title="Edit Blog" />
 
       <EditBlogForm blogId={params.slug} />
     </div>

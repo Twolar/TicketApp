@@ -5,7 +5,7 @@ import React from "react";
 const PostEdit = async ({ params }) => {
   return (
     <div className="flex flex-col items-center">
-      <PageTitle headingLevel="h2" title="Edit Post" titleSize="4xl" />
+      <PageTitle headingLevel="h2" title="Edit Post" />
       <EditPostForm postId={params.postSlug} />
     </div>
   );

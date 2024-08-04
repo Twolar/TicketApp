@@ -9,8 +9,6 @@ const Denied = () => {
           headingLevel="h2"
           title="Denied"
           subtitle="Looks like you do not have access to this page..."
-          titleSize="4xl"
-          subtitleSize="lg"
         />
       </div>
     </>

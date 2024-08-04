@@ -23,8 +23,6 @@ const BlogsPage = async () => {
           headingLevel="h2"
           title="Blogs"
           subtitle="Manage your blogs"
-          titleSize="4xl"
-          subtitleSize="lg"
         />
         <div>
           <Link

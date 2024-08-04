@@ -13,9 +13,9 @@ const headingLevels = {
 
 const PageTitle = ({
   headingLevel = "h2",
-  titleSize = "4xl", // Default text size for the title
+  titleClasses = "text-primary text-4xl", // Default text size for the title
   title,
-  subtitleSize = "lg", // Default text size for the subtitle
+  subtitleClasses = "text-lg", // Default text size for the subtitle
   subtitle,
 }) => {
   // Validate headingLevel, default to h2 if not valid
@@ -23,11 +23,9 @@ const PageTitle = ({
 
   return (
     <div>
-      <Heading className={`font-bold text-primary text-${titleSize}`}>
-        {title}
-      </Heading>
+      <Heading className={`font-bold ${titleClasses}`}>{title}</Heading>
       {subtitle ? (
-        <p className={`py-5 text-${subtitleSize}`}>{subtitle}</p>
+        <p className={`py-5 ${subtitleClasses}`}>{subtitle}</p>
       ) : (
         <></>
       )}

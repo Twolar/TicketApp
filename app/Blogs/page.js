@@ -29,8 +29,6 @@ const Blogs = async () => {
           headingLevel="h2"
           title="Blogs"
           subtitle="Explore music blogs..."
-          titleSize="4xl"
-          subtitleSize="lg"
         />
       </div>
 

@@ -5,7 +5,7 @@ import React from "react";
 const PostCreate = ({ params }) => {
   return (
     <div className="flex flex-col items-center">
-      <PageTitle headingLevel="h2" title="Create a post" titleSize="4xl" />
+      <PageTitle headingLevel="h2" title="Create a post" />
       <CreatePostForm blogId={params.slug} />
     </div>
   );

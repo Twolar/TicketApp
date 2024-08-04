@@ -32,7 +32,7 @@ const BlogManagement = async ({ params }) => {
       <div className="flex flex-col space-y-4">
         <div className="flex justify-between items-center">
           <div>
-            <PageTitle headingLevel="h2" title="Manage blog" titleSize="4xl" />
+            <PageTitle headingLevel="h2" title="Manage blog" />
             <ul className="mt-4">
               <li>Title: {blog.title}</li>
               <li>Description: {blog.description}</li>
@@ -61,7 +61,7 @@ const BlogManagement = async ({ params }) => {
         <div className="divider"></div>
         <div className="flex justify-between items-center">
           <div>
-            <PageTitle headingLevel="h2" title="Posts" titleSize="4xl" />
+            <PageTitle headingLevel="h2" title="Posts" />
           </div>
           <div>
             <Link
