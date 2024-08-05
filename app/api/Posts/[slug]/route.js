@@ -58,7 +58,7 @@ export async function PUT(req, { params }) {
     const postData = await req.json(); // Parse the request body
 
     // Check for required fields
-    if (!postData.title || !postData.status) {
+    if (!postData.title) {
       return NextResponse.json(
         { message: "Post title and status are required" },
         { status: 400 }
@@ -83,7 +83,6 @@ export async function PUT(req, { params }) {
       data: {
         title: postData.title,
         content: postData.content,
-        status: postData.status,
         links: linksJson, // Update the links field
       },
     });

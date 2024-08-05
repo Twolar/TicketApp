@@ -48,7 +48,6 @@ model Post {
   userId        String
   title         String
   content       String
-  status        String       @default("draft")
   links         String?      @map("Links")
   createdAt     DateTime     @default(now()) @map("CreatedAt")
   updatedAt     DateTime     @updatedAt @map("UpdatedAt")

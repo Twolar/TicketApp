@@ -36,7 +36,7 @@ const Blogs = async () => {
         {blogs.map((blog) => (
           <div
             key={blog.id}
-            className="card bg-base-100 image-full w-96 shadow-xl card bg-base-100 border border-neutral"
+            className="card bg-base-100 image-full w-96 shadow-xl border border-neutral"
           >
             <div className="card-body">
               <h2 className="card-title">{blog.title}</h2>

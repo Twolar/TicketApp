@@ -13,6 +13,9 @@ async function getBlog(id) {
         },
       },
       posts: {
+        orderBy: {
+          createdAt: "desc", // Order posts by creation date in descending order
+        },
         include: {
           user: true, // Include user data if needed
         },
@@ -54,7 +57,7 @@ const ViewBlog = async ({ params }) => {
               headingLevel="h2"
               title={blog.title}
               subtitle={blog.description}
-              subtitleClasses="pt-2    text-lg"
+              subtitleClasses="pt-2 text-lg"
             />
             <ul className="mt-4">
               <li>
@@ -80,44 +83,54 @@ const ViewBlog = async ({ params }) => {
           </div>
         </div>
         <div className="divider"></div>
-        {/* Display posts as cards in a single column */}
+        {/* Display posts as cards */}
         <div className="grid grid-cols-1 gap-8">
           {blog.posts.length > 0 ? (
             blog.posts.map((post) => (
               <div
                 key={post.id}
-                className="card bg-base-100 shadow-xl border border-neutral"
+                className="card bg-base-100 image-full shadow-xl border border-neutral"
               >
                 <div className="card-body">
-                  <PageTitle
-                    headingLevel="h3"
-                    title={post.title}
-                    titleClasses="text-primary text-2xl"
-                  />
-                  <p>{post.content}</p>
-                  <ul className="list-disc list-inside">
-                    {post.links.map((link, index) => (
-                      <li key={index}>
-                        <a
-                          href={link.Url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {link.MusicProvider || link.Url}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="divider divider mt-0 mb-0"></div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <PageTitle
+                        headingLevel="h3"
+                        title={post.title}
+                        titleClasses="text-primary text-2xl"
+                      />
+                      <p>{post.content}</p>
+                    </div>
+                    <div>
+                      <ul className="list-disc list-inside">
+                        {post.links.map((link, index) => (
+                          <li key={index}>
+                            <a
+                              href={link.Url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="link link-primary"
+                            >
+                              {link.Title || link.Url}
+                              {link.MusicProvider && ` (${link.MusicProvider})`}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="divider mt-0 mb-0"></div>
                   <div className="text-sm text-gray-500">
-                    <p>Posted: {new Date(post.createdAt).toLocaleString()}</p>
+                    <p>
+                      Posted: {new Date(post.createdAt).toLocaleDateString()}
+                    </p>
                   </div>
                 </div>
               </div>
             ))
           ) : (
             <div className="text-center col-span-full">
-              Start posting some chu chu chuuunes...
+              No chu chu chuuunes posted here...
             </div>
           )}
         </div>

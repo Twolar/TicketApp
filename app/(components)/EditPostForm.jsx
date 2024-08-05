@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { PostStatusEnum } from "@/app/(misc)/Enums";
 import { PageRoutesDashboard } from "../(misc)/PageRoutes";
 import LinksInput from "./LinksFormInput";
 
@@ -11,7 +10,6 @@ const EditPostForm = ({ postId }) => {
   const [formData, setFormData] = useState({
     title: "",
     content: "",
-    status: PostStatusEnum.Draft,
     blogId: "",
     links: [],
   });
@@ -72,7 +70,6 @@ const EditPostForm = ({ postId }) => {
       setFormData({
         title: "",
         content: "",
-        status: PostStatusEnum.Draft,
         blogId: "",
         links: [],
       });
@@ -115,22 +112,6 @@ const EditPostForm = ({ postId }) => {
             value={formData.links}
             onLinksChange={handleChange}
           />
-          <label className="label">
-            <span className="label-text">Status</span>
-          </label>
-          <select
-            name="status"
-            required
-            value={formData.status}
-            onChange={handleChange}
-            className="select select-bordered w-full mb-4"
-          >
-            {Object.values(PostStatusEnum).map((status, index) => (
-              <option key={index} value={status}>
-                {status}
-              </option>
-            ))}
-          </select>
 
           <input
             type="submit"

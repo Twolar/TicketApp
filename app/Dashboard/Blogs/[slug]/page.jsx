@@ -79,7 +79,6 @@ const BlogManagement = async ({ params }) => {
             <thead>
               <tr>
                 <th>Title</th>
-                <th>Status</th>
                 <th>Author</th>
                 <th className="text-right">Actions</th>
               </tr>
@@ -89,7 +88,6 @@ const BlogManagement = async ({ params }) => {
                 blog.posts.map((post) => (
                   <tr key={post.id}>
                     <td>{post.title}</td>
-                    <td>{post.status}</td>
                     <td>{post.user.name}</td>
                     <td className="text-right">
                       <Link

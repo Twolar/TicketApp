@@ -13,7 +13,7 @@ export async function POST(req) {
     const postData = await req.json();
 
     // Check for required fields
-    if (!postData.title || !postData.status || !postData.blogId) {
+    if (!postData.title || !postData.blogId) {
       return NextResponse.json(
         { message: "Post title, status, and blog ID are required" },
         { status: 400 }
@@ -31,7 +31,6 @@ export async function POST(req) {
       data: {
         title: postData.title,
         content: postData.content,
-        status: postData.status,
         blogId: postData.blogId,
         userId: token.id,
         links: linksJson,
