@@ -23,6 +23,7 @@ model User {
   favorites     Favorite[]
   likes         Like[]
   postComments  PostComment[]
+  feedback      Feedback[]
   @@map("Users")
 }
 
@@ -112,4 +113,15 @@ model PostComment {
   user          User         @relation(fields: [userId], references: [id])
   post          Post         @relation(fields: [postId], references: [id])
   @@map("PostComments")
+}
+
+model Feedback {
+  id            String       @id @default(uuid())
+  userId        String
+  suggestion    String
+  isRead        Boolean      @default(false)
+  createdAt     DateTime     @default(now()) @map("CreatedAt")
+  updatedAt     DateTime     @updatedAt @map("UpdatedAt")
+  user          User         @relation(fields: [userId], references: [id])
+  @@map("Feedback")
 }

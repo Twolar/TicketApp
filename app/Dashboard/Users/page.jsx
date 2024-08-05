@@ -25,9 +25,9 @@ const Users = async () => {
           <div>
             <Link
               href={PageRoutesDashboard.UsersCreate}
-              className="btn btn-primary"
+              className="btn btn-primary btn-sm"
             >
-              create
+              new
             </Link>
           </div>
         </div>
@@ -55,7 +55,7 @@ const Users = async () => {
                   <td>
                     <Link
                       href={`${PageRoutesDashboard.Users}/Edit/${user.id}`}
-                      className="btn btn-primary btn-sm"
+                      className="btn btn-primary btn-xs "
                     >
                       edit
                     </Link>

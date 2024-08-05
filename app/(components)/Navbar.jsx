@@ -79,6 +79,11 @@ const Navbar = async () => {
                 <li>
                   <a className="justify-between">my profile</a>
                 </li>
+                <li>
+                  <Link href={PageRoutesDashboard.FeedbackCreate}>
+                    submit feedback
+                  </Link>
+                </li>
 
                 <li className="menu-title mt-2">
                   <span>dashboard</span>
@@ -91,8 +96,14 @@ const Navbar = async () => {
                 </li>
 
                 {/* TODO TLB: Only show this based on role */}
+                <li className="menu-title mt-2">
+                  <span>admin</span>
+                </li>
                 <li>
                   <Link href={PageRoutesDashboard.Users}>users</Link>
+                </li>
+                <li>
+                  <Link href={PageRoutesDashboard.Feedback}>view feedback</Link>
                 </li>
               </ul>
             </div>

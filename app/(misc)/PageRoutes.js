@@ -12,4 +12,6 @@ export const PageRoutesDashboard = {
   BlogsEdit: "/Dashboard/Blogs/Edit",
   Users: "/Dashboard/Users",
   UsersCreate: "/Dashboard/Users/Create",
+  Feedback: "/Dashboard/Feedback",
+  FeedbackCreate: "/Dashboard/Feedback/Create",
 };
