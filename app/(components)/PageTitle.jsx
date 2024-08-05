@@ -15,7 +15,7 @@ const PageTitle = ({
   headingLevel = "h2",
   titleClasses = "text-primary text-4xl", // Default text size for the title
   title,
-  subtitleClasses = "text-lg", // Default text size for the subtitle
+  subtitleClasses = "py-5 text-lg", // Default text size for the subtitle
   subtitle,
 }) => {
   // Validate headingLevel, default to h2 if not valid
@@ -24,11 +24,7 @@ const PageTitle = ({
   return (
     <div>
       <Heading className={`font-bold ${titleClasses}`}>{title}</Heading>
-      {subtitle ? (
-        <p className={`py-5 ${subtitleClasses}`}>{subtitle}</p>
-      ) : (
-        <></>
-      )}
+      {subtitle ? <p className={`${subtitleClasses}`}>{subtitle}</p> : <></>}
     </div>
   );
 };

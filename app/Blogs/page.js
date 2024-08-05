@@ -50,7 +50,12 @@ const Blogs = async () => {
               </div>
               <div className="divider divider"></div>
               <div className="card-actions justify-end">
-                <button className="btn btn-primary btn-sm">Read More</button>
+                <Link
+                  className="btn btn-primary btn-xs"
+                  href={`${PageRoutesPublic.Blogs}/${blog.id}`}
+                >
+                  view blog
+                </Link>
               </div>
             </div>
           </div>
