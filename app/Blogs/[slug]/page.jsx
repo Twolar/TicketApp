@@ -54,7 +54,7 @@ const ViewBlog = async ({ params }) => {
               headingLevel="h2"
               title={blog.title}
               subtitle={blog.description}
-              subtitleClasses="pt-5 text-lg"
+              subtitleClasses="pt-2    text-lg"
             />
             <ul className="mt-4">
               <li>
@@ -80,19 +80,6 @@ const ViewBlog = async ({ params }) => {
           </div>
         </div>
         <div className="divider"></div>
-        <div className="flex justify-between items-center">
-          <div>
-            <PageTitle headingLevel="h3" title="Posts" />
-          </div>
-          <div>
-            {/* <Link
-              href={`${PageRoutesDashboard.Blogs}/${blog.id}/Posts/Create`}
-              className="btn btn-primary btn-sm"
-            >
-              new
-            </Link> */}
-          </div>
-        </div>
         {/* Display posts as cards in a single column */}
         <div className="grid grid-cols-1 gap-8">
           {blog.posts.length > 0 ? (
@@ -103,7 +90,7 @@ const ViewBlog = async ({ params }) => {
               >
                 <div className="card-body">
                   <PageTitle
-                    headingLevel="h4"
+                    headingLevel="h3"
                     title={post.title}
                     titleClasses="text-primary text-2xl"
                   />
