@@ -21,7 +21,7 @@ const BlogsPage = async () => {
       <div className="flex justify-between items-center">
         <PageTitle
           headingLevel="h2"
-          title="Blogs"
+          title="My Blogs"
           subtitle="Manage your blogs"
         />
         <div>
@@ -40,20 +40,16 @@ const BlogsPage = async () => {
           {/* Table head */}
           <thead>
             <tr>
-              <th>Id</th>
               <th>Title</th>
-              <th>Description</th>
               <th>Tags</th>
               <th>Author</th>
-              <th>Actions</th>
+              <th className="text-right">Actions</th>
             </tr>
           </thead>
           <tbody>
             {blogs.map((blog) => (
               <tr key={blog.id}>
-                <th>{blog.id}</th>
                 <td>{blog.title}</td>
-                <td>{blog.description}</td>
                 <td>
                   {blog.blogTags.map((blogTag, index) => (
                     <div key={index} className="badge badge-neutral m-1">
@@ -62,7 +58,7 @@ const BlogsPage = async () => {
                   ))}
                 </td>
                 <td>{blog.user.name}</td>
-                <td>
+                <td className="text-right">
                   <Link
                     href={`${PageRoutesDashboard.Blogs}/${blog.id}`}
                     className="btn btn-primary btn-xs"

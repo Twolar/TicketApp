@@ -47,23 +47,21 @@ const Feedback = async () => {
             {/* Table head */}
             <thead>
               <tr>
-                <th>Id</th>
-                <th>User</th>
                 <th>Suggestion</th>
+                <th>User</th>
                 <th>Created At</th>
                 <th>IsRead</th>
-                <th>Actions</th>
+                <th className="text-right">Actions</th>
               </tr>
             </thead>
             <tbody>
               {feedback.map((item) => (
                 <tr key={item.id}>
-                  <th>{item.id}</th>
-                  <td>{item.user?.name || "Unknown User"}</td>
                   <td>{item.suggestion}</td>
+                  <td>{item.user?.name || "Unknown User"}</td>
                   <td>{new Date(item.createdAt).toLocaleDateString()}</td>
                   <td>{item.isRead ? "✅" : "🗞"}</td>
-                  <td>
+                  <td className="text-right">
                     <Link
                       href={`${PageRoutesDashboard.Feedback}/Edit/${item.id}`}
                       className="btn btn-primary btn-xs"

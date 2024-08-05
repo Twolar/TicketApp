@@ -49,7 +49,7 @@ const CreateFeedbackForm = () => {
         <p className="text-error">{errorMessage}</p>
         <form onSubmit={handleSubmit} method="post">
           <label className="label">
-            <span className="label-text">Your Suggestion</span>
+            <span className="label-text">Suggestion</span>
           </label>
           <textarea
             name="suggestion"

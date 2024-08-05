@@ -78,24 +78,20 @@ const BlogManagement = async ({ params }) => {
             {/* Table head */}
             <thead>
               <tr>
-                <th>Id</th>
                 <th>Title</th>
-                <th>Content</th>
                 <th>Status</th>
                 <th>Author</th>
-                <th>Actions</th>
+                <th className="text-right">Actions</th>
               </tr>
             </thead>
             <tbody>
               {blog.posts.length > 0 ? (
                 blog.posts.map((post) => (
                   <tr key={post.id}>
-                    <td>{post.id}</td>
                     <td>{post.title}</td>
-                    <td>{post.content}</td>
                     <td>{post.status}</td>
                     <td>{post.user.name}</td>
-                    <td>
+                    <td className="text-right">
                       <Link
                         href={`${PageRoutesDashboard.Blogs}/${blog.id}/Posts/Edit/${post.id}`}
                         className="btn btn-primary btn-xs"

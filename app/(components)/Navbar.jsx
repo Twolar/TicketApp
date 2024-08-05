@@ -92,7 +92,7 @@ const Navbar = async () => {
                   <Link href={PageRoutesDashboard.Dashboard}>overview</Link>
                 </li>
                 <li>
-                  <Link href={PageRoutesDashboard.Blogs}>blogs</Link>
+                  <Link href={PageRoutesDashboard.Blogs}>my blogs</Link>
                 </li>
 
                 {/* TODO TLB: Only show this based on role */}
