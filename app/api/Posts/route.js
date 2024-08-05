@@ -20,6 +20,12 @@ export async function POST(req) {
       );
     }
 
+    // Convert links to JSON string
+    let linksJson = null;
+    if (postData.links && Array.isArray(postData.links)) {
+      linksJson = JSON.stringify(postData.links);
+    }
+
     // Create the new post
     const newPost = await prisma.post.create({
       data: {
@@ -28,6 +34,7 @@ export async function POST(req) {
         status: postData.status,
         blogId: postData.blogId,
         userId: token.id,
+        links: linksJson,
       },
     });
 

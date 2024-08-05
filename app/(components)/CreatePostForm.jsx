@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { PostStatusEnum } from "@/app/(misc)/Enums";
 import { PageRoutesDashboard } from "../(misc)/PageRoutes";
+import LinksInput from "./LinksFormInput"; // Import the new LinksInput component
 
 const CreatePostForm = ({ blogId }) => {
   const router = useRouter();
@@ -11,6 +12,7 @@ const CreatePostForm = ({ blogId }) => {
     content: "",
     status: PostStatusEnum.Draft,
     blogId,
+    links: [],
   });
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -24,8 +26,6 @@ const CreatePostForm = ({ blogId }) => {
   };
 
   const handleSubmit = async (e) => {
-    console.log(formData);
-
     e.preventDefault();
     setErrorMessage("");
     const res = await fetch("/api/Posts", {
@@ -45,6 +45,8 @@ const CreatePostForm = ({ blogId }) => {
         title: "",
         content: "",
         status: PostStatusEnum.Draft,
+        blogId,
+        links: [],
       });
       router.push(`${PageRoutesDashboard.Blogs}/${response.post.blogId}`);
       router.refresh(); // Force page refresh to get the latest data
@@ -76,6 +78,14 @@ const CreatePostForm = ({ blogId }) => {
             value={formData.content}
             onChange={handleChange}
             className="textarea textarea-bordered w-full mb-4"
+          />
+          <label className="label">
+            <span className="label-text">Links</span>
+          </label>
+          <LinksInput
+            name="links"
+            value={formData.links}
+            onLinksChange={handleChange}
           />
           <label className="label">
             <span className="label-text">Status</span>

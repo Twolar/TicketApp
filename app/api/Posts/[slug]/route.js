@@ -10,6 +10,17 @@ async function getPost(id) {
       blog: true, // Include related blog info if needed
     },
   });
+
+  // Parse the links JSON string to an array of objects
+  if (post && post.links) {
+    try {
+      post.links = JSON.parse(post.links);
+    } catch (error) {
+      console.error("Error parsing links:", error);
+      post.links = []; // Fallback in case of parsing error
+    }
+  }
+
   return post;
 }
 
@@ -49,7 +60,7 @@ export async function PUT(req, { params }) {
     // Check for required fields
     if (!postData.title || !postData.status) {
       return NextResponse.json(
-        { message: "Post title, and status are required" },
+        { message: "Post title and status are required" },
         { status: 400 }
       );
     }
@@ -60,6 +71,12 @@ export async function PUT(req, { params }) {
       return NextResponse.json({ message: "Post not found" }, { status: 404 });
     }
 
+    // Convert links to JSON string if present
+    let linksJson = null;
+    if (postData.links && Array.isArray(postData.links)) {
+      linksJson = JSON.stringify(postData.links);
+    }
+
     // Update the post details
     const updatedPost = await prisma.post.update({
       where: { id: slug }, // Use the slug to identify the post
@@ -67,6 +84,7 @@ export async function PUT(req, { params }) {
         title: postData.title,
         content: postData.content,
         status: postData.status,
+        links: linksJson, // Update the links field
       },
     });
 
