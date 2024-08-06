@@ -49,7 +49,7 @@ const Blogs = async () => {
                   </div>
                 ))}
               </div>
-              <div className="divider divider"></div>
+              <div className="divider"></div>
               <div className="card-actions justify-end">
                 <Link
                   className="btn btn-primary btn-xs"
