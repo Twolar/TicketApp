@@ -1,4 +1,7 @@
 import PageTitle from "@/app/(components)/PageTitle";
+import PostCard from "@/app/(components)/PostCard";
+import { PageRoutesPublic } from "@/app/(misc)/PageRoutes";
+import Link from "next/link";
 import React from "react";
 
 // Fetch the blog and associated posts from the database
@@ -44,7 +47,7 @@ async function getBlog(id) {
   return blog;
 }
 
-const ViewBlog = async ({ params }) => {
+const BlogView = async ({ params }) => {
   const blog = await getBlog(params.slug);
 
   return (
@@ -87,50 +90,13 @@ const ViewBlog = async ({ params }) => {
         <div className="grid grid-cols-1 gap-8">
           {blog.posts.length > 0 ? (
             blog.posts.map((post) => (
-              <div
-                key={post.id}
-                className="card bg-base-100 image-full shadow-xl border border-neutral"
-              >
-                <div className="card-body">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <PageTitle
-                        headingLevel="h3"
-                        title={post.title}
-                        titleClasses="text-primary text-2xl"
-                      />
-                      <p>{post.content}</p>
-                    </div>
-                    <div>
-                      <ul className="list-disc list-inside">
-                        {post.links.map((link, index) => (
-                          <li key={index}>
-                            <a
-                              href={link.Url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="link link-primary"
-                            >
-                              {link.Title || link.Url}
-                              {link.MusicProvider && ` (${link.MusicProvider})`}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="divider mt-0 mb-0"></div>
-                  <div className="text-sm text-gray-500">
-                    <p>
-                      Posted: {new Date(post.createdAt).toLocaleDateString()}
-                    </p>
-                  </div>
-                </div>
+              <div key={post.id}>
+                <PostCard headingLevel="h3" blogId={blog.id} post={post} />
               </div>
             ))
           ) : (
             <div className="text-center col-span-full">
-              No chu chu chuuunes posted here...
+              🚂 No chu chu chuuune posts found here yet...
             </div>
           )}
         </div>
@@ -139,4 +105,4 @@ const ViewBlog = async ({ params }) => {
   );
 };
 
-export default ViewBlog;
+export default BlogView;

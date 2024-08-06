@@ -24,14 +24,15 @@ const Blogs = async () => {
 
   return (
     <div className="flex flex-col">
-      <div className="flex justify-between items-center ">
+      <div className="flex justify-between items-center">
         <PageTitle
           headingLevel="h2"
           title="Blogs"
           subtitle="Explore music blogs..."
+          subtitleClasses="pt-2 text-lg"
         />
       </div>
-
+      <div className="divider"></div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {blogs.map((blog) => (
           <div
